@@ -18,3 +18,5 @@ export const StyledInput = styled.input`
     outline: none;
   }
 `;
+
+export const StyledButton = styled.button``;

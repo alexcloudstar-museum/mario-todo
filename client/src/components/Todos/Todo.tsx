@@ -1,7 +1,8 @@
 import React from 'react';
+import { StyledTodo } from './style';
 
 const Todo = () => {
-  return <div>Todo</div>;
+  return <StyledTodo>Todo</StyledTodo>;
 };
 
 export default Todo;

@@ -9,7 +9,7 @@ export const StyledHeader = styled.header`
 `;
 
 export const StyledNavigationLinks = styled.ul`
-  margin-right: 3rem;
+  margin: 0 3rem 0 0;
 `;
 
 export const StyledNavigationLink = styled.li`
