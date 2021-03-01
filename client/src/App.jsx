@@ -1,11 +1,22 @@
 import React from 'react';
-import {Container} from './components/'
+import {Container, MainNavigation, NavigationLinks, NavigationLink, Logo} from './components/'
+import { Homepage } from './pages';
 
 const  App = () => {
-  return <Container>
-    <h1>Hello</h1>
-    <h2>World!</h2>
-  </Container>
+  return <>
+    <MainNavigation>
+    <NavigationLinks>
+        <Logo>Logo</Logo>
+    </NavigationLinks>
+      <NavigationLinks>
+        <NavigationLink>About</NavigationLink>
+        <NavigationLink>Contact</NavigationLink>
+      </NavigationLinks>
+    </MainNavigation>
+    <Container>
+     <Homepage />
+    </Container>
+  </>
 }
 
 export default App;
