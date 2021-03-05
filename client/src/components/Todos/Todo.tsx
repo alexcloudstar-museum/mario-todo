@@ -1,8 +1,10 @@
-import React from 'react';
+import React, { FC } from 'react';
 import { StyledTodo } from './style';
 
-const Todo = () => {
-  return <StyledTodo>Todo</StyledTodo>;
+type TodoProp = { todo: string };
+
+const Todo: FC<TodoProp> = ({ todo }) => {
+  return <StyledTodo>{todo}</StyledTodo>;
 };
 
 export default Todo;
