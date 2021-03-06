@@ -14,9 +14,10 @@ const Todos = () => {
     <TodoContext.Provider value={{ todo, setTodo }}>
       <TodosWrapper>
         <AddTodo />
-        {todos?.map(todo => {
-          return <Todo todo={todo} />;
-        })}
+        {todos.length > 0 &&
+          todos.map(todo => {
+            return <Todo todo={todo} />;
+          })}
       </TodosWrapper>
     </TodoContext.Provider>
   );

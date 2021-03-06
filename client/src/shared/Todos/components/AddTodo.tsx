@@ -14,6 +14,15 @@ const AddTodo: React.FC<AddTodo> = () => {
     setTodo(e.target.value);
   };
 
+  const onBtnSubmit = () => {
+    setTodos(todos.concat(todo));
+    setTodo('');
+  };
+
+  const onBtnCancel = () => {
+    setTodo('');
+  };
+
   return (
     <AddTodoWrapper>
       <Input
@@ -22,8 +31,8 @@ const AddTodo: React.FC<AddTodo> = () => {
         placeholder='New Todo'
         value={todo}
       />
-      <Button onClick={() => setTodos(todos.concat(todo))}>Add Todo</Button>
-      <Button onClick={() => console.log('Canceled adding')}>Cancel</Button>
+      <Button onClick={onBtnSubmit}>Add Todo</Button>
+      <Button onClick={onBtnCancel}>Cancel</Button>
     </AddTodoWrapper>
   );
 };
