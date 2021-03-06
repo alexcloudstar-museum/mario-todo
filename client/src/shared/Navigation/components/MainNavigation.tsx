@@ -1,5 +1,5 @@
 import React from 'react';
-import { NavigationProps } from './type';
+import { NavigationProps } from '../types/type';
 import { StyledHeader } from './style';
 
 const MainNavigation: React.FC<NavigationProps> = ({ children }) => (

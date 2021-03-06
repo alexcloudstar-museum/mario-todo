@@ -1,5 +1,5 @@
 import React from 'react';
-import {Container, MainNavigation, NavigationLinks, NavigationLink, Logo} from './components/'
+import {Container, MainNavigation, NavigationLinks, NavigationLink, Logo} from './shared'
 import { Homepage } from './pages';
 
 const  App = () => {

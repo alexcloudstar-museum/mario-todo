@@ -1,22 +1,23 @@
 import React from 'react';
 import { AddTodo } from './types';
 
-import { Button, Input } from '../FormElements';
+import { Button, Input } from '../../FormElements/components';
 import { AddTodoWrapper } from './style';
-import { useTodoContext } from '../../data/todo/context/TodoContext';
-import { useTodosContext } from '../../data/todos/context/TodosContext';
+import { useTodoContext } from '../data/context/TodoContext';
+import { useTodosContext } from '../data/context/TodosContext';
 
 const AddTodo: React.FC<AddTodo> = () => {
   const { todo, setTodo } = useTodoContext();
   const { todos, setTodos } = useTodosContext();
 
-  console.log(todo);
-  console.log(todos);
+  const onChange = e => {
+    setTodo(e.target.value);
+  };
 
   return (
     <AddTodoWrapper>
       <Input
-        onChange={(e: any) => setTodo(e.target.value)}
+        onChange={onChange}
         type='text'
         placeholder='New Todo'
         value={todo}

@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { HomepageWrapper } from './style';
 
-import { Container, Todos } from '../../components';
-import { TodosContext } from '../../data/todos/context/TodosContext';
+import { Todos } from '../../shared';
+import { TodosContext } from '../../shared/Todos/data/context/TodosContext';
 
 const Homepage = () => {
   const [todos, setTodos] = useState<string[]>([]);

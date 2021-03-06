@@ -1,9 +1,10 @@
 import React from 'react';
-import { ContainerProps } from './types';
+import { ContainerProps } from '../types/type';
 
 import { ContainerWrapper } from './style';
 
-import MarioBg from '../../assets/img/marioBg.png';
+//@ts-ignore
+import MarioBg from '../../../assets/img/marioBg.png';
 
 const Container: React.FC<ContainerProps> = (
   { children, display, justifyContent, alignContent },

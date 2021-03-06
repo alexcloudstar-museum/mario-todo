@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { TodoContext } from '../../data/todo/context/TodoContext';
-import { useTodosContext } from '../../data/todos/context/TodosContext';
+import { TodoContext } from '../data/context/TodoContext';
+import { useTodosContext } from '../data/context/TodosContext';
 import AddTodo from './AddTodo';
 
 import { TodosWrapper } from './style';

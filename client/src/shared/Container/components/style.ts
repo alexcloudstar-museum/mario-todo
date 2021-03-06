@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { ContainerProps } from './types';
+import { ContainerProps } from '../types/type';
 
 export const ContainerWrapper = styled.div<ContainerProps>`
   height: 100%;
