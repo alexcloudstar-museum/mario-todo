@@ -4,7 +4,11 @@ import { ButtonProps } from '../types/types';
 import { StyledButton } from './style';
 
 const Input: React.FC<ButtonProps> = ({ children, onClick }) => {
-  return <StyledButton onClick={onClick}>{children}</StyledButton>;
+  return (
+    <StyledButton show onClick={onClick}>
+      {children}
+    </StyledButton>
+  );
 };
 
 export default Input;

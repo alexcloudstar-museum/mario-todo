@@ -12,11 +12,24 @@ export const StyledInput = styled.input`
   font-size: 30px;
   text-align: center;
   border: 0;
-  border-bottom: 1px solid #707070;
 
   &:focus {
     outline: none;
   }
 `;
 
-export const StyledButton = styled.button``;
+export const StyledButton = styled.button<{ show: boolean }>`
+  display: ${({ show }) => (show ? 'block' : 'none')};
+  background: transparent;
+  border: 0;
+  padding: 0 20px;
+  border-left: 1px solid;
+
+  &:hover {
+    cursor: pointer;
+  }
+
+  &:focus {
+    outline: none;
+  }
+`;

@@ -26,13 +26,17 @@ const AddTodo: React.FC<AddTodo> = () => {
   return (
     <AddTodoWrapper>
       <Input
-        onChange={onChange}
+        onChange={e => onChange(e)}
         type='text'
         placeholder='New Todo'
         value={todo}
       />
-      <Button onClick={onBtnSubmit}>Add Todo</Button>
-      <Button onClick={onBtnCancel}>Cancel</Button>
+      <Button onClick={onBtnSubmit}>
+        <i className='fas fa-check fa-2x'></i>
+      </Button>
+      <Button onClick={onBtnCancel}>
+        <i className='fas fa-times fa-2x'></i>
+      </Button>
     </AddTodoWrapper>
   );
 };

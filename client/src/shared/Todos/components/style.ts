@@ -12,9 +12,11 @@ export const TodosWrapper = styled.div`
 
 export const AddTodoWrapper = styled.div`
   display: flex;
+  border-bottom: 1px solid #707070;
 `;
 
 export const StyledTodo = styled.div`
   padding: 20px 8px;
+  text-transform: capitalize;
   border-bottom: 1px solid #707070;
 `;
