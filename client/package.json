@@ -7,11 +7,15 @@
   },
   "devDependencies": {
     "@snowpack/plugin-react-refresh": "^2.4.0",
+    "@types/lodash": "^4.14.168",
+    "@types/styled-components": "^5.1.7",
     "prettier": "^2.2.1",
     "snowpack": "^3.0.1"
   },
   "dependencies": {
+    "lodash": "^4.17.21",
     "react": "^17.0.1",
-    "react-dom": "^17.0.1"
+    "react-dom": "^17.0.1",
+    "styled-components": "^5.2.1"
   }
 }

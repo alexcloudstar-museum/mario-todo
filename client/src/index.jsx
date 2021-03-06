@@ -1,8 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import GlobalStyling from './GlobalStyling'
 import App from './App.jsx';
 ReactDOM.render(
   <React.StrictMode>
+    <GlobalStyling />
     <App />
   </React.StrictMode>,
   document.getElementById('root'),
