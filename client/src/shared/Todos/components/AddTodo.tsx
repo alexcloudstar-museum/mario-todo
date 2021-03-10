@@ -1,10 +1,11 @@
 import React from 'react';
 import { AddTodo } from './types';
 
-import { Button, Input } from '../../FormElements/components';
+import { Input } from '../../FormElements/components';
 import { AddTodoWrapper } from './style';
 import { useTodoContext } from '../data/context/TodoContext';
 import { useTodosContext } from '../data/context/TodosContext';
+import AddTodoButtons from './AddTodoButtons';
 
 const AddTodo: React.FC<AddTodo> = () => {
   const { todo, setTodo } = useTodoContext();
@@ -31,12 +32,7 @@ const AddTodo: React.FC<AddTodo> = () => {
         placeholder='New Todo'
         value={todo}
       />
-      <Button onClick={onBtnSubmit}>
-        <i className='fas fa-check fa-2x'></i>
-      </Button>
-      <Button onClick={onBtnCancel}>
-        <i className='fas fa-times fa-2x'></i>
-      </Button>
+      <AddTodoButtons onBtnSubmit={onBtnSubmit} onBtnCancel={onBtnCancel} />
     </AddTodoWrapper>
   );
 };

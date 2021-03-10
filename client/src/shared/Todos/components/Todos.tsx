@@ -1,27 +1,25 @@
-import { map, isEmpty, divide } from 'lodash';
-import React, { useState } from 'react';
-import { TodoContext } from '../data/context/TodoContext';
+import { map, isEmpty } from 'lodash';
+import React from 'react';
 import { useTodosContext } from '../data/context/TodosContext';
 import AddTodo from './AddTodo';
 
-import { TodosWrapper } from './style';
+import { NoTodoLeft, TodosWrapper } from './style';
 import Todo from './Todo';
 
 const Todos = () => {
-  const [todo, setTodo] = useState<string>();
-  const { todos, setTodos } = useTodosContext();
-
+  const { todos } = useTodosContext();
   return (
-    <TodoContext.Provider value={{ todo, setTodo }}>
-      <TodosWrapper>
-        <AddTodo />
-        {!isEmpty(todos) ? (
-          map(todos, todo => <Todo key={Math.random()} todo={todo} />)
-        ) : (
-          <div>No todos left 🥳</div>
-        )}
-      </TodosWrapper>
-    </TodoContext.Provider>
+    <TodosWrapper>
+      <AddTodo />
+      {!isEmpty(todos) ? (
+        map(todos, todo => <Todo key={Math.random()} todo={todo} />)
+      ) : (
+        <NoTodoLeft>
+          <h3>Congrats!</h3>
+          <h2>No todos left 🥳</h2>
+        </NoTodoLeft>
+      )}
+    </TodosWrapper>
   );
 };
 

@@ -16,7 +16,32 @@ export const AddTodoWrapper = styled.div`
 `;
 
 export const StyledTodo = styled.div`
-  padding: 20px 8px;
+  height: 90px;
+  display: flex;
+  padding: 0 8px;
+  flex-direction: row;
+  align-items: center;
   text-transform: capitalize;
   border-bottom: 1px solid #707070;
+
+  p {
+    width: 100%;
+  }
+`;
+
+export const NoTodoLeft = styled.div`
+  height: 100%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  h3 {
+    font-size: 2rem;
+    margin: 0;
+  }
+
+  h2 {
+    margin-top: 1rem;
+    font-size: 2.5rem;
+  }
 `;

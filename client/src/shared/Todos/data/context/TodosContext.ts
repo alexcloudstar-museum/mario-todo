@@ -6,7 +6,7 @@ export type TodosContextType = {
 };
 
 export const TodosContext = createContext<TodosContextType>({
-  todos: [],
+  todos: ['Placeholder', 'Placeholder 3'],
   setTodos: () => {},
 });
 
