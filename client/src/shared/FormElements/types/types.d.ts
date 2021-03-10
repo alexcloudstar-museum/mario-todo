@@ -4,7 +4,7 @@ export interface InputProps {
   placeholder: string;
   disabled?: boolean;
   height?: string;
-  onChange: (e: React.FormEvent) => void;
+  onChange: (e: React.FormEvent<HTMLInputElement>) => any;
 }
 
 export interface ButtonProps {

@@ -1,38 +1,31 @@
-import React from 'react';
-import { AddTodo } from './types';
+import React, { FC } from 'react';
+import { AddTodoProps } from './types';
+import { AddTodoWrapper } from './style';
 
 import { Input } from '../../FormElements/components';
-import { AddTodoWrapper } from './style';
 import { useTodoContext } from '../data/context/TodoContext';
-import { useTodosContext } from '../data/context/TodosContext';
+
 import AddTodoButtons from './AddTodoButtons';
+import { useAddTodoHook } from '../data/hooks/useAddTodoHook';
 
-const AddTodo: React.FC<AddTodo> = () => {
-  const { todo, setTodo } = useTodoContext();
-  const { todos, setTodos } = useTodosContext();
-
-  const onChange = e => {
-    setTodo(e.target.value);
-  };
-
-  const onBtnSubmit = () => {
-    setTodos(todos.concat(todo));
-    setTodo('');
-  };
-
-  const onBtnCancel = () => {
-    setTodo('');
-  };
+const AddTodo: FC<AddTodoProps> = () => {
+  const { todo } = useTodoContext();
+  const addTodoHook = useAddTodoHook();
 
   return (
     <AddTodoWrapper>
       <Input
-        onChange={e => onChange(e)}
+        onChange={(e: React.FormEvent<HTMLInputElement>) =>
+          addTodoHook.onChange(e)
+        }
         type='text'
         placeholder='New Todo'
         value={todo}
       />
-      <AddTodoButtons onBtnSubmit={onBtnSubmit} onBtnCancel={onBtnCancel} />
+      <AddTodoButtons
+        onBtnSubmit={addTodoHook.onBtnSubmit}
+        onBtnCancel={addTodoHook.onBtnCancel}
+      />
     </AddTodoWrapper>
   );
 };

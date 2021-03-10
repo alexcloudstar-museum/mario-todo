@@ -2,16 +2,16 @@ import { createContext, useContext } from 'react';
 
 export type TodoContextType = {
   todo: string;
-  isEditTodo?: boolean;
+  tempTodo: string;
   setTodo: (todo: string) => void;
-  setIsEditTodo: (isEdit: boolean) => void;
+  setTempTodo: (todo: string) => void;
 };
 
 export const TodoContext = createContext<TodoContextType>({
   todo: '',
-  isEditTodo: false,
+  tempTodo: '',
   setTodo: (todo: string) => {},
-  setIsEditTodo: (isEdit: boolean) => {},
+  setTempTodo: (todo: string) => {},
 });
 
 export const useTodoContext = () => useContext(TodoContext);

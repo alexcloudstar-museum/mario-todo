@@ -1,9 +1,9 @@
 import React, { FC } from 'react';
-import { AddTodoButtonsType } from './types';
+import { AddTodoButtonsProps } from './types';
 
 import { Button } from '../../FormElements/components';
 
-const AddTodoButtons: FC<AddTodoButtonsType> = ({
+const AddTodoButtons: FC<AddTodoButtonsProps> = ({
   onBtnSubmit,
   onBtnCancel,
   height,

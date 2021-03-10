@@ -1,8 +1,8 @@
 import { ButtonProps } from '../../FormElements/types/types';
 
-export interface AddTodo {}
+export interface AddTodoProps {}
 
-export type AddTodoButtonsType = Pick<ButtonProps, 'height'> & {
+export type AddTodoButtonsProps = Pick<ButtonProps, 'height'> & {
   onBtnSubmit: () => void;
   onBtnCancel: () => void;
 };
