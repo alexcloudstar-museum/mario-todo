@@ -13,13 +13,13 @@ const Todo: FC<TodoProp> = ({ todo }) => {
   const defaultHEIGHT = '100%';
 
   const { disabled, setDisabled } = useButtonContext();
-  const editTodoHook = useEditTodoHook();
+  const editTodoHook = useEditTodoHook(todo);
 
   return (
     <StyledTodo>
       <Input
-        value={disabled ? todo : editTodoHook.tempTodo}
-        placeholder={disabled ? todo : editTodoHook.tempTodo}
+        value={editTodoHook.tempTodo}
+        placeholder={'placeholder'}
         disabled={disabled}
         type='text'
         onChange={e => editTodoHook.onChange(e)}

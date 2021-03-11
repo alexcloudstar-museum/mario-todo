@@ -1,9 +1,8 @@
-import { useState } from 'react';
 import { useButtonContext } from '../../../FormElements/data/context/ButtonContext';
 import { useTodoContext } from '../context/TodoContext';
 import { useTodosContext } from '../context/TodosContext';
 
-export const useEditTodoHook = () => {
+export const useEditTodoHook = todoProp => {
   const { todo, tempTodo, setTempTodo } = useTodoContext();
   const { todos, setTodos } = useTodosContext();
   const { disabled, setDisabled } = useButtonContext();
@@ -14,14 +13,16 @@ export const useEditTodoHook = () => {
 
   const onBtnSubmit = () => {
     const updatedTodos = [...todos];
-    const updatedTodoIndex = todos.findIndex(editedTodo => editedTodo === todo);
+    const updatedTodoIndex = todos.findIndex(
+      editedTodo => editedTodo === todoProp
+    );
     updatedTodos[updatedTodoIndex] = tempTodo;
     setTodos(updatedTodos);
     setDisabled(true);
   };
 
   const onDeleteTodo = () => {
-    const updatedTodos = todos.filter(updatedTodo => updatedTodo !== todo);
+    const updatedTodos = todos.filter(updatedTodo => updatedTodo !== todoProp);
     setTodos(updatedTodos);
     // TODO:
     // do the API call to remove the todo from db
