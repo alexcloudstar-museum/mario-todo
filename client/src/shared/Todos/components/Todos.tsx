@@ -12,7 +12,7 @@ const Todos = () => {
     <TodosWrapper>
       <AddTodo />
       {!isEmpty(todos) ? (
-        map(todos, todo => <Todo key={Math.random()} todo={todo} />)
+        map(todos, todo => <Todo key={todo.id} todo={todo} />)
       ) : (
         <NoTodoLeft>
           <h3>Congrats!</h3>

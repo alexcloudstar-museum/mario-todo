@@ -20,7 +20,7 @@ const AddTodo: FC<AddTodoProps> = () => {
         }
         type='text'
         placeholder='New Todo'
-        value={todo}
+        value={todo.name}
       />
       <AddTodoButtons
         onBtnSubmit={addTodoHook.onBtnSubmit}

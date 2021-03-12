@@ -1,13 +1,13 @@
 import { createContext, useContext } from 'react';
 
 export type TodosContextType = {
-  todos: string[];
-  setTodos: (todos: string[]) => void;
+  todos: { id: string; name: string }[];
+  setTodos: (param: any) => void;
 };
 
 export const TodosContext = createContext<TodosContextType>({
-  todos: ['Placeholder', 'Placeholder 3'],
-  setTodos: () => {},
+  todos: [{ id: '', name: '' }],
+  setTodos: (param: any) => {},
 });
 
 export const useTodosContext = () => useContext(TodosContext);

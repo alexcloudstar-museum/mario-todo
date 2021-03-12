@@ -1,16 +1,18 @@
 import { createContext, useContext } from 'react';
 
+// Transform todo into an object id, name
+
 export type TodoContextType = {
-  todo: string;
+  todo: { id: string; name: string };
   tempTodo: string;
-  setTodo: (todo: string) => void;
+  setTodo: ({ id, name }: { id: string; name: string }) => void;
   setTempTodo: (todo: string) => void;
 };
 
 export const TodoContext = createContext<TodoContextType>({
-  todo: '',
+  todo: { id: '', name: '' },
   tempTodo: '',
-  setTodo: (todo: string) => {},
+  setTodo: ({ id, name }: { id: string; name: string }) => {},
   setTempTodo: (todo: string) => {},
 });
 

@@ -7,10 +7,12 @@ import AddTodoButtons from './AddTodoButtons';
 
 import { useEditTodoHook } from '../data/hooks/useEditTodoHook';
 
-type TodoProp = { todo: string };
+type TodoProp = { todo: { id: string; name: string } };
 
 const Todo: FC<TodoProp> = ({ todo }) => {
   const defaultHEIGHT = '100%';
+
+  console.log(todo);
 
   const { disabled, setDisabled } = useButtonContext();
   const editTodoHook = useEditTodoHook(todo);
@@ -18,8 +20,8 @@ const Todo: FC<TodoProp> = ({ todo }) => {
   return (
     <StyledTodo>
       <Input
-        value={editTodoHook.tempTodo}
-        placeholder={'placeholder'}
+        value={todo.name}
+        placeholder={todo.name}
         disabled={disabled}
         type='text'
         onChange={e => editTodoHook.onChange(e)}
