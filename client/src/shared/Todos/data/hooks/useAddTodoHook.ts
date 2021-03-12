@@ -7,16 +7,20 @@ export const useAddTodoHook = () => {
   const { todos, setTodos } = useTodosContext();
 
   const onChange = (e: React.FormEvent<HTMLInputElement>) => {
-    setTodo({ id: '1', name: e.currentTarget.value });
+    setTodo({
+      id: Math.floor(Math.random() * 11).toString(),
+      name: e.currentTarget.value,
+    });
   };
 
   const onBtnSubmit = () => {
     setTodos(todos.concat({ id: todo.id, name: todo.name }));
-    // setTodo('');
+    setTempTodo({ id: todo.id, name: todo.name });
+    setTodo({ name: '' });
   };
 
   const onBtnCancel = () => {
-    // setTodo('');
+    setTodo({ name: '' });
   };
 
   return {

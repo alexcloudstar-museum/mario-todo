@@ -4,16 +4,16 @@ import { createContext, useContext } from 'react';
 
 export type TodoContextType = {
   todo: { id: string; name: string };
-  tempTodo: string;
-  setTodo: ({ id, name }: { id: string; name: string }) => void;
-  setTempTodo: (todo: string) => void;
+  tempTodo: { id: string; name: string };
+  setTodo: ({ id, name }: { id?: string; name: string }) => void;
+  setTempTodo: ({ id, name }: { id?: string; name: string }) => void;
 };
 
 export const TodoContext = createContext<TodoContextType>({
   todo: { id: '', name: '' },
-  tempTodo: '',
-  setTodo: ({ id, name }: { id: string; name: string }) => {},
-  setTempTodo: (todo: string) => {},
+  tempTodo: { id: '', name: '' },
+  setTodo: ({ id, name }: { id?: string; name: string }) => {},
+  setTempTodo: ({ id, name }: { id?: string; name: string }) => {},
 });
 
 export const useTodoContext = () => useContext(TodoContext);

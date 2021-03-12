@@ -6,25 +6,26 @@ import { useButtonContext } from '../../FormElements/data/context/ButtonContext'
 import AddTodoButtons from './AddTodoButtons';
 
 import { useEditTodoHook } from '../data/hooks/useEditTodoHook';
+import { useTodoContext } from '../data/context/TodoContext';
 
-type TodoProp = { todo: { id: string; name: string } };
+type TodoProp = {};
 
-const Todo: FC<TodoProp> = ({ todo }) => {
+const Todo: FC<TodoProp> = () => {
   const defaultHEIGHT = '100%';
 
-  console.log(todo);
-
+  const { tempTodo, setTempTodo } = useTodoContext();
   const { disabled, setDisabled } = useButtonContext();
-  const editTodoHook = useEditTodoHook(todo);
+  const editTodoHook = useEditTodoHook();
 
   return (
     <StyledTodo>
       <Input
-        value={todo.name}
-        placeholder={todo.name}
+        value={tempTodo.name}
+        placeholder={tempTodo.name}
         disabled={disabled}
         type='text'
-        onChange={e => editTodoHook.onChange(e)}
+        onBlur={editTodoHook.blurEvent}
+        onChange={editTodoHook.onChange}
         height={defaultHEIGHT}
       />
       {disabled ? (
