@@ -3,6 +3,8 @@ import { useButtonContext } from '../../../FormElements/data/context/ButtonConte
 import { useTodoContext } from '../context/TodoContext';
 import { useTodosContext } from '../context/TodosContext';
 
+import { findIndex, filter } from 'lodash';
+
 export const useEditTodoHook = () => {
   const { todo, tempTodo } = useTodoContext();
   const { todos, setTodos } = useTodosContext();
@@ -24,8 +26,9 @@ export const useEditTodoHook = () => {
   const onBtnSubmit = () => {
     const updatedTodos = [...todos];
 
-    const updatedTodoIndex = updatedTodos.findIndex(
-      updatedTodos => updatedTodos.id === upTodo.id
+    const updatedTodoIndex = findIndex(
+      updatedTodos,
+      updatedTodo => updatedTodo.id === upTodo.id
     );
 
     updatedTodos[updatedTodoIndex] = upTodo;
@@ -34,9 +37,10 @@ export const useEditTodoHook = () => {
   };
 
   const onDeleteTodo = (todoID: string) => {
-    const updatedTodos = todos.filter(updatedTodo => {
-      return updatedTodo.id !== todoID;
-    });
+    const updatedTodos = filter(
+      todos,
+      updatedTodo => updatedTodo.id !== todoID
+    );
     setTodos(updatedTodos);
 
     // TODO:
