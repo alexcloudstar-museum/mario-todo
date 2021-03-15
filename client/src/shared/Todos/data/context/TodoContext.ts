@@ -10,8 +10,8 @@ export type TodoContextType = {
 };
 
 export const TodoContext = createContext<TodoContextType>({
-  todo: { id: '', name: '' },
-  tempTodo: { id: '', name: '' },
+  todo: { id: null, name: null },
+  tempTodo: { id: null, name: null },
   setTodo: ({ id, name }: { id?: string; name: string }) => {},
   setTempTodo: ({ id, name }: { id?: string; name: string }) => {},
 });

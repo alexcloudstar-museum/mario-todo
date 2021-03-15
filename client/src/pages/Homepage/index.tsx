@@ -6,7 +6,7 @@ import { TodosContext } from '../../shared/Todos/data/context/TodosContext';
 
 const Homepage = () => {
   const [todos, setTodos] = useState<[{ id: string; name: string }]>([
-    { id: '', name: '' },
+    { id: null, name: null },
   ]);
   return (
     <TodosContext.Provider value={{ todos, setTodos }}>

@@ -4,12 +4,17 @@ import { useTodoContext } from '../context/TodoContext';
 import { useTodosContext } from '../context/TodosContext';
 
 export const useEditTodoHook = () => {
-  const { todo, setTodo, tempTodo, setTempTodo } = useTodoContext();
+  const { todo, tempTodo } = useTodoContext();
   const { todos, setTodos } = useTodosContext();
-  const { disabled, setDisabled } = useButtonContext();
+  const { setDisabled } = useButtonContext();
+
+  const [upTodo, setUpTodo] = useState({
+    id: tempTodo.id,
+    name: tempTodo.name,
+  });
 
   const onChange = (e: React.FormEvent<HTMLInputElement>) => {
-    setTempTodo({ name: e.currentTarget.value });
+    setUpTodo({ id: todo.id, name: e.currentTarget.value });
   };
 
   const blurEvent = () => {
@@ -20,24 +25,26 @@ export const useEditTodoHook = () => {
     const updatedTodos = [...todos];
 
     const updatedTodoIndex = updatedTodos.findIndex(
-      updatedTodos => updatedTodos.id === tempTodo.id
+      updatedTodos => updatedTodos.id === upTodo.id
     );
 
-    updatedTodos[updatedTodoIndex] = tempTodo;
+    updatedTodos[updatedTodoIndex] = upTodo;
     setTodos(updatedTodos);
     setDisabled(true);
   };
 
-  const onDeleteTodo = () => {
-    const updatedTodos = todos.filter(
-      updatedTodo => updatedTodo.id !== tempTodo.id
-    );
+  const onDeleteTodo = (todoID: string) => {
+    const updatedTodos = todos.filter(updatedTodo => {
+      return updatedTodo.id !== todoID;
+    });
     setTodos(updatedTodos);
+
     // TODO:
     // do the API call to remove the todo from db
   };
 
   return {
+    upTodo,
     blurEvent,
     onChange,
     onBtnSubmit,

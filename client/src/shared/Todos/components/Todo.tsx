@@ -1,4 +1,4 @@
-import React, { FC, useState } from 'react';
+import React, { FC } from 'react';
 import { Button, Input } from '../../FormElements/components';
 import { StyledTodo } from './style';
 
@@ -6,22 +6,20 @@ import { useButtonContext } from '../../FormElements/data/context/ButtonContext'
 import AddTodoButtons from './AddTodoButtons';
 
 import { useEditTodoHook } from '../data/hooks/useEditTodoHook';
-import { useTodoContext } from '../data/context/TodoContext';
 
-type TodoProp = {};
+type TodoProp = { todo: any };
 
-const Todo: FC<TodoProp> = () => {
+const Todo: FC<TodoProp> = ({ todo }) => {
   const defaultHEIGHT = '100%';
 
-  const { tempTodo, setTempTodo } = useTodoContext();
   const { disabled, setDisabled } = useButtonContext();
   const editTodoHook = useEditTodoHook();
 
   return (
     <StyledTodo>
       <Input
-        value={tempTodo.name}
-        placeholder={tempTodo.name}
+        value={editTodoHook.upTodo.name}
+        placeholder={editTodoHook.upTodo.name}
         disabled={disabled}
         type='text'
         onBlur={editTodoHook.blurEvent}
@@ -38,7 +36,7 @@ const Todo: FC<TodoProp> = () => {
             <i className='fas fa-pen fa-2x'></i>
           </Button>
           <Button
-            onClick={editTodoHook.onDeleteTodo}
+            onClick={() => editTodoHook.onDeleteTodo(todo.id)}
             hoverColor={'red'}
             height={defaultHEIGHT}
           >
