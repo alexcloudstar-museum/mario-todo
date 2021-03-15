@@ -8,7 +8,7 @@ import Todo from './Todo';
 
 const Todos = () => {
   const { todos } = useTodosContext();
-  console.log(todos);
+
   return (
     <TodosWrapper>
       <AddTodo />

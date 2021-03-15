@@ -1,12 +1,12 @@
 import { createContext, useContext } from 'react';
 
 export type TodosContextType = {
-  todos: { id: string; name: string }[] | [];
+  todos: { id: string; name: string }[] | null;
   setTodos: (param: any) => void;
 };
 
 export const TodosContext = createContext<TodosContextType>({
-  todos: [],
+  todos: null,
   setTodos: (param: any) => {},
 });
 
