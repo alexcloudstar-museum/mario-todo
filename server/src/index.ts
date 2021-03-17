@@ -1,8 +1,22 @@
-import express from 'express';
-// rest of the code remains same
-const app = express();
-const PORT = 8000;
-app.get('/', (req, res) => res.send('Express + TypeScript Server'));
-app.listen(PORT, () => {
-  console.log(`⚡️[server]: Server is running at https://localhost:${PORT}`);
+import express, {
+  Request,
+  Response,
+  NextFunction,
+  urlencoded,
+  json,
+} from 'express';
+
+const app: express.Application = express();
+
+app.use(urlencoded({ extended: true }));
+
+app.use(json());
+
+app.get('/', (req: Request, res: Response, next: NextFunction) =>
+  res.send('Express + TypeScript Server')
+);
+app.listen(process.env.PORT, () => {
+  console.log(
+    `⚡️[server]: Server is running at https://localhost:${process.env.PORT}`
+  );
 });
