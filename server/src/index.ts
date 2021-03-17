@@ -34,7 +34,8 @@ app.get('/', (req: Request, res: Response, next: NextFunction) =>
 
 mongoose
   .connect(
-    `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASSWORD}@cluster0.fykep.mongodb.net/${process.env.DB_NAME}?retryWrites=true&w=majority`
+    `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASSWORD}@cluster0.fykep.mongodb.net/${process.env.DB_NAME}?retryWrites=true&w=majority`,
+    { useNewUrlParser: true, useUnifiedTopology: true }
   )
   .then(() => {
     app.listen(process.env.PORT || 5000, () => {
@@ -42,5 +43,5 @@ mongoose
     });
   })
   .catch(err => {
-    throw err;
+    console.log(err);
   });
