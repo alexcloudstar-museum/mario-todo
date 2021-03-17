@@ -6,6 +6,9 @@ export const StyledHeader = styled.header`
   justify-content: space-between;
   border: 1px solid #707070;
   box-shadow: 11px 10px 12px #00000029;
+  background: #fff;
+  position: fixed;
+  width: 100%;
 `;
 
 export const StyledNavigationLinks = styled.ul`

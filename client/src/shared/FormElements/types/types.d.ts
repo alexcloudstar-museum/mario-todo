@@ -1,10 +1,11 @@
 export interface InputProps {
-  value: string;
+  value?: string;
   type: string;
   placeholder: string;
   disabled?: boolean;
   height?: string;
-  onChange: (e: React.FormEvent) => void;
+  onBlur?: any;
+  onChange: (e: React.FormEvent<HTMLInputElement>) => any;
 }
 
 export interface ButtonProps {

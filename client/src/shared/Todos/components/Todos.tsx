@@ -8,11 +8,12 @@ import Todo from './Todo';
 
 const Todos = () => {
   const { todos } = useTodosContext();
+
   return (
     <TodosWrapper>
       <AddTodo />
       {!isEmpty(todos) ? (
-        map(todos, todo => <Todo key={Math.random()} todo={todo} />)
+        map(todos, todo => <Todo key={todo.id} todo={todo} />)
       ) : (
         <NoTodoLeft>
           <h3>Congrats!</h3>

@@ -5,7 +5,7 @@ import { Todos } from '../../shared';
 import { TodosContext } from '../../shared/Todos/data/context/TodosContext';
 
 const Homepage = () => {
-  const [todos, setTodos] = useState<string[]>([]);
+  const [todos, setTodos] = useState<[{ id: string; name: string }] | []>([]);
   return (
     <TodosContext.Provider value={{ todos, setTodos }}>
       <HomepageWrapper>

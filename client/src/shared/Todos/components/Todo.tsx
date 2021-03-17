@@ -1,48 +1,29 @@
-import React, { FC, useState } from 'react';
+import React, { FC } from 'react';
 import { Button, Input } from '../../FormElements/components';
 import { StyledTodo } from './style';
 
 import { useButtonContext } from '../../FormElements/data/context/ButtonContext';
-import { useTodosContext } from '../data/context/TodosContext';
-import { useTodoContext } from '../data/context/TodoContext';
 import AddTodoButtons from './AddTodoButtons';
 
-type TodoProp = { todo: string };
+import { useEditTodoHook } from '../data/hooks/useEditTodoHook';
+
+type TodoProp = { todo: any };
 
 const Todo: FC<TodoProp> = ({ todo }) => {
   const defaultHEIGHT = '100%';
-  const [tempTodo, setTempTodo] = useState<string>(todo);
+
   const { disabled, setDisabled } = useButtonContext();
-  const { todos, setTodos } = useTodosContext();
-  const { isEditTodo, setIsEditTodo, setTodo } = useTodoContext();
-
-  const onChange = e => {
-    setTempTodo(e.target.value);
-  };
-
-  const onBtnSubmit = () => {
-    const updatedTodos = [...todos];
-    const updatedTodoIndex = todos.findIndex(editedTodo => editedTodo === todo);
-    updatedTodos[updatedTodoIndex] = tempTodo;
-    setTodos(updatedTodos);
-    setDisabled(true);
-  };
-
-  const onDeleteTodo = () => {
-    const updatedTodos = todos.filter(updatedTodo => updatedTodo !== todo);
-    setTodos(updatedTodos);
-    // TODO:
-    // do the API call to remove the todo from db
-  };
+  const editTodoHook = useEditTodoHook();
 
   return (
     <StyledTodo>
       <Input
-        value={disabled ? todo : tempTodo}
-        placeholder={disabled ? todo : tempTodo}
+        value={editTodoHook.upTodo.name}
+        placeholder={editTodoHook.upTodo.name}
         disabled={disabled}
         type='text'
-        onChange={e => onChange(e)}
+        onBlur={editTodoHook.blurEvent}
+        onChange={editTodoHook.onChange}
         height={defaultHEIGHT}
       />
       {disabled ? (
@@ -55,7 +36,7 @@ const Todo: FC<TodoProp> = ({ todo }) => {
             <i className='fas fa-pen fa-2x'></i>
           </Button>
           <Button
-            onClick={onDeleteTodo}
+            onClick={() => editTodoHook.onDeleteTodo(todo.id)}
             hoverColor={'red'}
             height={defaultHEIGHT}
           >
@@ -64,7 +45,7 @@ const Todo: FC<TodoProp> = ({ todo }) => {
         </>
       ) : (
         <AddTodoButtons
-          onBtnSubmit={onBtnSubmit}
+          onBtnSubmit={editTodoHook.onBtnSubmit}
           onBtnCancel={() => setDisabled(true)}
           height={defaultHEIGHT}
         />

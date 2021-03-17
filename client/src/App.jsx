@@ -5,7 +5,8 @@ import { TodoContext } from './shared/Todos/data/context/TodoContext';
 import { ButtonContext } from './shared/FormElements/data/context/ButtonContext';
 
 const  App = () => {
-  const [todo, setTodo] = useState("");
+  const [todo, setTodo] = useState({id: null, name: null});
+  const [tempTodo, setTempTodo] = useState({id: null, name: null});
   const [disabled, setDisabled] = useState(true);
 
 
@@ -19,7 +20,7 @@ const  App = () => {
         <NavigationLink>Contact</NavigationLink>
       </NavigationLinks>
     </MainNavigation>
-    <TodoContext.Provider value={{ todo, setTodo }}>
+    <TodoContext.Provider value={{ todo, setTodo, tempTodo, setTempTodo }}>
       <ButtonContext.Provider value={{disabled, setDisabled}}>
         <Container>
         <Homepage />
