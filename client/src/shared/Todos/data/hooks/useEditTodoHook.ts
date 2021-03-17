@@ -4,6 +4,7 @@ import { useTodoContext } from '../context/TodoContext';
 import { useTodosContext } from '../context/TodosContext';
 
 import { findIndex, filter } from 'lodash';
+import { deleteTodo, editTodo } from '../service/todosService';
 
 export const useEditTodoHook = () => {
   const { todo, tempTodo } = useTodoContext();
@@ -34,6 +35,7 @@ export const useEditTodoHook = () => {
     updatedTodos[updatedTodoIndex] = upTodo;
     setTodos(updatedTodos);
     setDisabled(true);
+    editTodo({ todo: upTodo.todo, _id: upTodo._id });
   };
 
   const onDeleteTodo = (todoID: string) => {
@@ -43,8 +45,7 @@ export const useEditTodoHook = () => {
     );
     setTodos(updatedTodos);
 
-    // TODO:
-    // do the API call to remove the todo from db
+    deleteTodo(todoID);
   };
 
   return {

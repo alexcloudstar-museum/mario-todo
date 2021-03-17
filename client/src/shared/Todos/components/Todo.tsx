@@ -36,7 +36,7 @@ const Todo: FC<TodoProp> = ({ todo }) => {
             <i className='fas fa-pen fa-2x'></i>
           </Button>
           <Button
-            onClick={() => editTodoHook.onDeleteTodo(todo.id)}
+            onClick={() => editTodoHook.onDeleteTodo(todo._id)}
             hoverColor={'red'}
             height={defaultHEIGHT}
           >

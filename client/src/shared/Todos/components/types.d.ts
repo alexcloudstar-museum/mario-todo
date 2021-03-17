@@ -14,3 +14,7 @@ export interface getTodosType {
 export interface addTodoType {
   todo: string;
 }
+
+export type editTodoType = Pick<addTodoType, 'todo'> & { _id: string };
+
+export type deleteTodoType = Pick<editTodoType, '_id'>;
