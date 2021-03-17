@@ -87,8 +87,6 @@ export const editTodo = async (
 ) => {
   const todoId = req.params.todoId;
 
-  console.log(todoId);
-
   const errors = validationResult(req);
 
   if (!errors.isEmpty()) {
@@ -97,6 +95,7 @@ export const editTodo = async (
     return next(error);
   }
 
+  console.log(req.body.job);
   const { job } = req.body;
 
   let todo;
@@ -118,7 +117,7 @@ export const editTodo = async (
     );
   }
 
-  todo = job;
+  todo.todo = job;
 
   try {
     await todo.save();
