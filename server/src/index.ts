@@ -28,10 +28,6 @@ app.use((req: Request, res: Response, next: NextFunction) => {
 
 app.use('/api', todoRouter);
 
-app.get('/', (req: Request, res: Response, next: NextFunction) =>
-  res.send('Express + TypeScript Server')
-);
-
 mongoose
   .connect(
     `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASSWORD}@cluster0.fykep.mongodb.net/${process.env.DB_NAME}?retryWrites=true&w=majority`,
