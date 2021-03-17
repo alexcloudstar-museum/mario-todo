@@ -5,8 +5,10 @@ import express, {
   urlencoded,
   json,
 } from 'express';
-
 import dotenv from 'dotenv';
+import mongoose from 'mongoose';
+
+import todoRouter from './routes/todo-routes';
 
 const app: express.Application = express();
 app.use(urlencoded({ extended: true }));
@@ -24,13 +26,21 @@ app.use((req: Request, res: Response, next: NextFunction) => {
   next();
 });
 
-app.use('/api');
+app.use('/api', todoRouter);
 
 app.get('/', (req: Request, res: Response, next: NextFunction) =>
   res.send('Express + TypeScript Server')
 );
-app.listen(process.env.PORT, () => {
-  console.log(
-    `⚡️[server]: Server is running at https://localhost:${process.env.PORT}`
-  );
-});
+
+mongoose
+  .connect(
+    `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASSWORD}@cluster0.fykep.mongodb.net/${process.env.DB_NAME}?retryWrites=true&w=majority`
+  )
+  .then(() => {
+    app.listen(process.env.PORT || 5000, () => {
+      console.log('Connected to the server');
+    });
+  })
+  .catch(err => {
+    throw err;
+  });

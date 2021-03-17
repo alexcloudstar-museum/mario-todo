@@ -24,6 +24,8 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importStar(require("express"));
 const dotenv_1 = __importDefault(require("dotenv"));
+const mongoose_1 = __importDefault(require("mongoose"));
+const todo_routes_1 = __importDefault(require("./routes/todo-routes"));
 const app = express_1.default();
 app.use(express_1.urlencoded({ extended: true }));
 app.use(express_1.json());
@@ -34,8 +36,15 @@ app.use((req, res, next) => {
     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PATCH, DELETE');
     next();
 });
-app.use('/api');
+app.use('/api', todo_routes_1.default);
 app.get('/', (req, res, next) => res.send('Express + TypeScript Server'));
-app.listen(process.env.PORT, () => {
-    console.log(`⚡️[server]: Server is running at https://localhost:${process.env.PORT}`);
+mongoose_1.default
+    .connect(`mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASSWORD}@cluster0.fykep.mongodb.net/${process.env.DB_NAME}?retryWrites=true&w=majority`)
+    .then(() => {
+    app.listen(process.env.PORT || 5000, () => {
+        console.log('Connected to the server');
+    });
+})
+    .catch(err => {
+    throw err;
 });
