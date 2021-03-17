@@ -18,8 +18,8 @@ const Todo: FC<TodoProp> = ({ todo }) => {
   return (
     <StyledTodo>
       <Input
-        value={editTodoHook.upTodo.name}
-        placeholder={editTodoHook.upTodo.name}
+        value={todo.todo}
+        placeholder={todo.todo}
         disabled={disabled}
         type='text'
         onBlur={editTodoHook.blurEvent}

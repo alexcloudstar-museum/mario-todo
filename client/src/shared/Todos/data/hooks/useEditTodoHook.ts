@@ -11,12 +11,12 @@ export const useEditTodoHook = () => {
   const { setDisabled } = useButtonContext();
 
   const [upTodo, setUpTodo] = useState({
-    id: tempTodo.id,
-    name: tempTodo.name,
+    _id: tempTodo._id,
+    todo: tempTodo.todo,
   });
 
   const onChange = (e: React.FormEvent<HTMLInputElement>) => {
-    setUpTodo({ id: todo.id, name: e.currentTarget.value });
+    setUpTodo({ _id: todo._id, todo: e.currentTarget.value });
   };
 
   const blurEvent = () => {
@@ -28,7 +28,7 @@ export const useEditTodoHook = () => {
 
     const updatedTodoIndex = findIndex(
       updatedTodos,
-      updatedTodo => updatedTodo.id === upTodo.id
+      updatedTodo => updatedTodo._id === upTodo._id
     );
 
     updatedTodos[updatedTodoIndex] = upTodo;
@@ -39,7 +39,7 @@ export const useEditTodoHook = () => {
   const onDeleteTodo = (todoID: string) => {
     const updatedTodos = filter(
       todos,
-      updatedTodo => updatedTodo.id !== todoID
+      updatedTodo => updatedTodo._id !== todoID
     );
     setTodos(updatedTodos);
 

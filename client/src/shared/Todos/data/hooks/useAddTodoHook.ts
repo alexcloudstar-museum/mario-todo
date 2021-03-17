@@ -1,6 +1,7 @@
-import React from 'react';
+import { FormEvent } from 'react';
 import { useTodoContext } from '../context/TodoContext';
 import { useTodosContext } from '../context/TodosContext';
+import { addTodo } from '../service/todosService';
 
 export const useAddTodoHook = () => {
   const { todo, tempTodo, setTodo, setTempTodo } = useTodoContext();
@@ -8,19 +9,20 @@ export const useAddTodoHook = () => {
 
   const onChange = (e: React.FormEvent<HTMLInputElement>) => {
     setTodo({
-      id: Math.floor(Math.random() * 11).toString(),
-      name: e.currentTarget.value,
+      _id: Math.floor(Math.random() * 11).toString(),
+      todo: e.currentTarget.value,
     });
   };
 
   const onBtnSubmit = () => {
-    setTodos(todos.concat({ id: todo.id, name: todo.name }));
-    setTempTodo({ id: todo.id, name: todo.name });
-    setTodo({ name: '' });
+    addTodo({ todo: todo.todo });
+    setTodos(todos.concat({ _id: todo._id, todo: todo.todo }));
+    setTempTodo({ _id: todo._id, todo: todo.todo });
+    setTodo({ todo: '' });
   };
 
   const onBtnCancel = () => {
-    setTodo({ name: '' });
+    setTodo({ todo: '' });
   };
 
   return {
