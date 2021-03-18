@@ -22,6 +22,7 @@ export const useEditTodoHook = todo => {
 
   const blurEvent = () => {
     setDisabled(true);
+    editTodo({ job: upTodo.todo, _id: upTodo._id });
   };
 
   const onBtnSubmit = async () => {

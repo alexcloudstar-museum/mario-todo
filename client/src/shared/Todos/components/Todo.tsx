@@ -29,7 +29,9 @@ const Todo: FC<TodoProp> = ({ todo }) => {
       {disabled ? (
         <>
           <Button
-            onClick={() => setDisabled(false)}
+            onClick={() => {
+              setDisabled(false);
+            }}
             hoverColor={'green'}
             height={defaultHEIGHT}
           >
@@ -45,7 +47,7 @@ const Todo: FC<TodoProp> = ({ todo }) => {
         </>
       ) : (
         <AddTodoButtons
-          onBtnSubmit={async () => await editTodoHook.onBtnSubmit()}
+          onBtnSubmit={editTodoHook.onBtnSubmit}
           onBtnCancel={() => setDisabled(true)}
           height={defaultHEIGHT}
         />
