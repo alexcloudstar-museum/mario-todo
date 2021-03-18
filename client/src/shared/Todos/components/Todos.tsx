@@ -9,8 +9,6 @@ import { map, isEmpty } from 'lodash';
 const Todos = () => {
   const { todos } = useTodosContext();
 
-  console.log(todos);
-
   return (
     <TodosWrapper>
       <AddTodo />

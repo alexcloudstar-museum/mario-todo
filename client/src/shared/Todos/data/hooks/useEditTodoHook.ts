@@ -6,14 +6,14 @@ import { useTodosContext } from '../context/TodosContext';
 import { findIndex, filter } from 'lodash';
 import { deleteTodo, editTodo } from '../service/todosService';
 
-export const useEditTodoHook = () => {
-  const { todo, tempTodo } = useTodoContext();
+export const useEditTodoHook = todo => {
+  const { tempTodo } = useTodoContext();
   const { todos, setTodos } = useTodosContext();
   const { setDisabled } = useButtonContext();
 
   const [upTodo, setUpTodo] = useState({
-    _id: tempTodo._id,
-    todo: tempTodo.todo,
+    _id: todo._id,
+    todo: todo.todo,
   });
 
   const onChange = (e: React.FormEvent<HTMLInputElement>) => {
@@ -24,7 +24,7 @@ export const useEditTodoHook = () => {
     setDisabled(true);
   };
 
-  const onBtnSubmit = () => {
+  const onBtnSubmit = async () => {
     const updatedTodos = [...todos];
 
     const updatedTodoIndex = findIndex(
@@ -35,7 +35,8 @@ export const useEditTodoHook = () => {
     updatedTodos[updatedTodoIndex] = upTodo;
     setTodos(updatedTodos);
     setDisabled(true);
-    editTodo({ todo: upTodo.todo, _id: upTodo._id });
+
+    await editTodo({ job: upTodo.todo, _id: upTodo._id });
   };
 
   const onDeleteTodo = (todoID: string) => {

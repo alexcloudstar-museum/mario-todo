@@ -13,8 +13,8 @@ export const getTodos = axios.get<getTodosType>(`${URL}/todos`);
 export const addTodo = (data: addTodoType) =>
   axios.post<addTodoType>(`${URL}/add-todo`, data);
 
-export const editTodo = ({ todo, _id }) =>
-  axios.patch<editTodoType>(`${URL}/edit-todo/todoId`, { todo, _id });
+export const editTodo = async ({ job, _id }) =>
+  await axios.patch<editTodoType>(`${URL}/edit-todo/${_id}`, { job });
 
 export const deleteTodo = (_id: string) =>
   axios.delete<deleteTodoType>(`${URL}/delete-todo/${_id}`);

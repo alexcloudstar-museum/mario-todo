@@ -10,7 +10,11 @@ const AddTodoButtons: FC<AddTodoButtonsProps> = ({
 }) => {
   return (
     <>
-      <Button onClick={onBtnSubmit} hoverColor={'green'} height={height}>
+      <Button
+        onClick={async () => await onBtnSubmit()}
+        hoverColor={'green'}
+        height={height}
+      >
         <i className='fas fa-check fa-2x'></i>
       </Button>
       <Button onClick={onBtnCancel} hoverColor={'red'} height={height}>
