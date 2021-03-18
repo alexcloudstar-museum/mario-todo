@@ -95,7 +95,6 @@ export const editTodo = async (
     return next(error);
   }
 
-  console.log(req.body.job);
   const { job } = req.body;
 
   let todo;

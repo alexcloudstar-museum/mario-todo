@@ -5,8 +5,8 @@ import { TodoContext } from './shared/Todos/data/context/TodoContext';
 import { ButtonContext } from './shared/FormElements/data/context/ButtonContext';
 
 const  App = () => {
-  const [todo, setTodo] = useState({id: null, name: null});
-  const [tempTodo, setTempTodo] = useState({id: null, name: null});
+  const [todo, setTodo] = useState({_id: null, todo: null});
+  const [tempTodo, setTempTodo] = useState({_id: null, todo: null});
   const [disabled, setDisabled] = useState(true);
 
 

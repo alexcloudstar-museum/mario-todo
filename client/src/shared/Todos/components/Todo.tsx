@@ -13,13 +13,13 @@ const Todo: FC<TodoProp> = ({ todo }) => {
   const defaultHEIGHT = '100%';
 
   const { disabled, setDisabled } = useButtonContext();
-  const editTodoHook = useEditTodoHook();
+  const editTodoHook = useEditTodoHook(todo);
 
   return (
     <StyledTodo>
       <Input
-        value={editTodoHook.upTodo.name}
-        placeholder={editTodoHook.upTodo.name}
+        value={editTodoHook.upTodo.todo}
+        placeholder={editTodoHook.upTodo.todo}
         disabled={disabled}
         type='text'
         onBlur={editTodoHook.blurEvent}
@@ -36,7 +36,7 @@ const Todo: FC<TodoProp> = ({ todo }) => {
             <i className='fas fa-pen fa-2x'></i>
           </Button>
           <Button
-            onClick={() => editTodoHook.onDeleteTodo(todo.id)}
+            onClick={() => editTodoHook.onDeleteTodo(todo._id)}
             hoverColor={'red'}
             height={defaultHEIGHT}
           >
@@ -45,7 +45,7 @@ const Todo: FC<TodoProp> = ({ todo }) => {
         </>
       ) : (
         <AddTodoButtons
-          onBtnSubmit={editTodoHook.onBtnSubmit}
+          onBtnSubmit={async () => await editTodoHook.onBtnSubmit()}
           onBtnCancel={() => setDisabled(true)}
           height={defaultHEIGHT}
         />

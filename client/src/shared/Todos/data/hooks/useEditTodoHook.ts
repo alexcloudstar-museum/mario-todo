@@ -4,47 +4,49 @@ import { useTodoContext } from '../context/TodoContext';
 import { useTodosContext } from '../context/TodosContext';
 
 import { findIndex, filter } from 'lodash';
+import { deleteTodo, editTodo } from '../service/todosService';
 
-export const useEditTodoHook = () => {
-  const { todo, tempTodo } = useTodoContext();
+export const useEditTodoHook = todo => {
+  const { tempTodo } = useTodoContext();
   const { todos, setTodos } = useTodosContext();
   const { setDisabled } = useButtonContext();
 
   const [upTodo, setUpTodo] = useState({
-    id: tempTodo.id,
-    name: tempTodo.name,
+    _id: todo._id,
+    todo: todo.todo,
   });
 
   const onChange = (e: React.FormEvent<HTMLInputElement>) => {
-    setUpTodo({ id: todo.id, name: e.currentTarget.value });
+    setUpTodo({ _id: todo._id, todo: e.currentTarget.value });
   };
 
   const blurEvent = () => {
     setDisabled(true);
   };
 
-  const onBtnSubmit = () => {
+  const onBtnSubmit = async () => {
     const updatedTodos = [...todos];
 
     const updatedTodoIndex = findIndex(
       updatedTodos,
-      updatedTodo => updatedTodo.id === upTodo.id
+      updatedTodo => updatedTodo._id === upTodo._id
     );
 
     updatedTodos[updatedTodoIndex] = upTodo;
     setTodos(updatedTodos);
     setDisabled(true);
+
+    await editTodo({ job: upTodo.todo, _id: upTodo._id });
   };
 
   const onDeleteTodo = (todoID: string) => {
     const updatedTodos = filter(
       todos,
-      updatedTodo => updatedTodo.id !== todoID
+      updatedTodo => updatedTodo._id !== todoID
     );
     setTodos(updatedTodos);
 
-    // TODO:
-    // do the API call to remove the todo from db
+    deleteTodo(todoID);
   };
 
   return {
