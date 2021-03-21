@@ -6,11 +6,9 @@ interface UserDoc extends mongoose.Document {
   userId: { type: String; required: true };
   todos: [
     {
-      _id: mongoose.Schema.Types.ObjectId;
-      job: {
-        type: String;
-        required: true;
-      };
+      type: String;
+      required: true;
+      Ref: 'Todo';
     }
   ];
 }
@@ -19,11 +17,9 @@ const userSchema = new Schema({
   userId: { type: String, required: true },
   todos: [
     {
-      _id: mongoose.Schema.Types.ObjectId,
-      job: {
-        type: String,
-        required: true,
-      },
+      type: String,
+      required: true,
+      ref: 'Todo',
     },
   ],
 });

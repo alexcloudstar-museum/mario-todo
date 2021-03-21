@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "node build/index.js",
-    "server": "nodemon src/index.ts",
+    "server": "nodemon src/index.ts --inspect",
     "client": "npm start --prefix ../client/",
     "dev": "concurrently \"npm run server\"  \"npm run client\"",
     "build": "tsc --project ./"
