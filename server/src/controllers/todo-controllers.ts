@@ -68,7 +68,6 @@ export const addTodo = async (
     return next(error);
   }
 
-  // instead of push this. Push the todoId (mongooseId)
   user?.todos.push(newTodo._id);
 
   try {
@@ -92,7 +91,8 @@ export const editTodo = async (
   res: Response,
   next: NextFunction
 ) => {
-  const todoId = req.params.todoId;
+  const { todoId }: any = req.params;
+  const { job }: any = req.body;
 
   const errors = validationResult(req);
 
@@ -101,8 +101,6 @@ export const editTodo = async (
 
     return next(error);
   }
-
-  const { job } = req.body;
 
   let todo;
 
@@ -123,7 +121,7 @@ export const editTodo = async (
     );
   }
 
-  todo = job;
+  todo.job = job;
 
   try {
     await todo.save();

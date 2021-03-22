@@ -29,7 +29,7 @@ todoRouter.post('/add-todo/:userId', addTodo);
     ** @params
     todoId
 */
-todoRouter.patch('/edit-todo/:todoId/:userId', editTodo);
+todoRouter.patch('/edit-todo/:todoId/', editTodo);
 
 /*
     ** route
