@@ -3,7 +3,7 @@ import mongoose, { ObjectId } from 'mongoose';
 const Schema = mongoose.Schema;
 
 interface UserDoc extends mongoose.Document {
-  userId: { type: String; required: true };
+  userId: { type: String };
   todos: [
     {
       type: ObjectId;
@@ -14,7 +14,7 @@ interface UserDoc extends mongoose.Document {
 }
 
 const userSchema = new Schema({
-  userId: { type: String, required: true },
+  userId: { type: String },
   todos: [
     {
       type: Schema.Types.ObjectId,

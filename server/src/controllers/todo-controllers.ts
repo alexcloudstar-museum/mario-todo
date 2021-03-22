@@ -142,7 +142,7 @@ export const deleteTodo = async (
   res: Response,
   next: NextFunction
 ) => {
-  const todoId = req.params.todoId;
+  const { todoId }: any = req.params;
 
   const errors = validationResult(req);
 
@@ -151,9 +151,11 @@ export const deleteTodo = async (
   }
 
   let todo;
+  let user;
 
   try {
     todo = await TodoModel.findById(todoId);
+    user = await UserModel.findOne({ userId: todo?.creator });
   } catch (err) {
     return next(new HttpError('Something went wrong, please try again', 500));
   }
@@ -164,7 +166,13 @@ export const deleteTodo = async (
     );
   }
 
+  const userTodos = user?.todos;
+  const indexOfTodo = userTodos?.indexOf(todo._id);
+
+  indexOfTodo && indexOfTodo > -1 && userTodos?.splice(indexOfTodo, 1);
+
   try {
+    await user?.save();
     await todo.remove();
   } catch (err) {
     return next(new HttpError('Something went wrong, please try again', 500));

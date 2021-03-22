@@ -29,7 +29,7 @@ todoRouter.post('/add-todo/:userId', addTodo);
     ** @params
     todoId
 */
-todoRouter.patch('/edit-todo/:todoId/', editTodo);
+todoRouter.patch('/edit-todo/:todoId', editTodo);
 
 /*
     ** route
@@ -37,6 +37,6 @@ todoRouter.patch('/edit-todo/:todoId/', editTodo);
     ** @params
     todoId
 */
-todoRouter.delete('/delete-todo/:todoId/:userId', deleteTodo);
+todoRouter.delete('/delete-todo/:todoId', deleteTodo);
 
 export default todoRouter;
