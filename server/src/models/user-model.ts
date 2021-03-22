@@ -1,4 +1,4 @@
-import mongoose, { ObjectId } from 'mongoose';
+import mongoose, { Mongoose, ObjectId } from 'mongoose';
 
 const Schema = mongoose.Schema;
 
@@ -6,8 +6,8 @@ interface UserDoc extends mongoose.Document {
   userId: { type: String; required: true };
   todos: [
     {
-      type: String;
-      required: true;
+      type: ObjectId;
+
       Ref: 'Todo';
     }
   ];
@@ -17,8 +17,7 @@ const userSchema = new Schema({
   userId: { type: String, required: true },
   todos: [
     {
-      type: String,
-      required: true,
+      type: Schema.Types.ObjectId,
       ref: 'Todo',
     },
   ],

@@ -10,7 +10,6 @@ interface TodoDoc extends mongoose.Document {
   creator: {
     type: String;
     ref: 'User';
-    required: true;
   };
 }
 
@@ -22,7 +21,6 @@ const todoSchema = new Schema({
   creator: {
     type: String,
     ref: 'User',
-    required: true,
   },
 });
 

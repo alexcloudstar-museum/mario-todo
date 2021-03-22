@@ -67,12 +67,14 @@ export const addTodo = async (
     return next(error);
   }
 
-  user?.todos.push(job);
+  // instead of push this. Push the todoId (mongooseId)
+  user?.todos.push(newTodo._id);
 
   try {
     await newTodo.save();
     await user?.save();
   } catch (err) {
+    console.log(err);
     const error = new HttpError(
       "Todo couldn't be saved. Please try again",
       500
