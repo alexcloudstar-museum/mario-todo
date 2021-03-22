@@ -13,7 +13,7 @@ export const useEditTodoHook = todo => {
 
   const [upTodo, setUpTodo] = useState({
     _id: todo._id,
-    todo: todo.todo,
+    todo: todo.job,
   });
 
   const onChange = (e: React.FormEvent<HTMLInputElement>) => {

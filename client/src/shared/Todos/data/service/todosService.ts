@@ -12,9 +12,8 @@ const URL = `http://localhost:5000/api`;
 export const createUser = data =>
   axios.post<{ userId: string }>(`${URL}/create-user/`, data);
 
-export const getTodos = axios.get<getTodosType>(
-  `${URL}/todos/${getLocalStorageItem}`
-);
+export const getTodos = () =>
+  axios.get<getTodosType>(`${URL}/todos/${getLocalStorageItem('id')}`);
 
 export const addTodo = ({ userId, job }: addTodoType) =>
   axios.post<addTodoType>(`${URL}/add-todo/${userId}`, { job });

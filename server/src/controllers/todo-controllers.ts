@@ -74,7 +74,6 @@ export const addTodo = async (
     await newTodo.save();
     await user?.save();
   } catch (err) {
-    console.log(err);
     const error = new HttpError(
       "Todo couldn't be saved. Please try again",
       500

@@ -8,6 +8,7 @@ export type AddTodoButtonsProps = Pick<ButtonProps, 'height'> & {
 };
 
 export interface getTodosType {
+  todos: any;
   userId: String;
 }
 

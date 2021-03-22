@@ -6,17 +6,14 @@ import { TodosContext } from '../../shared/Todos/data/context/TodosContext';
 import { getTodos } from '../../shared/Todos/data/service/todosService';
 
 const Homepage = () => {
-  const [todos, setTodos] = useState<[{ _id: string; todo: string }] | []>([]);
+  const [todos, setTodos] = useState<[]>([]);
 
   useEffect(() => {
-    getTodos
-      .then(res => {
-        setTodos(res.data.todos);
-      })
-      .catch(err => {
-        console.log(err);
-      });
-  }, [getTodos]);
+    (async () => {
+      const todos = await getTodos();
+      setTodos(todos.data.todos);
+    })();
+  }, []);
 
   return (
     <TodosContext.Provider value={{ todos, setTodos }}>
