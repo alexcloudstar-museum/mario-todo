@@ -9,6 +9,7 @@ import dotenv from 'dotenv';
 import mongoose from 'mongoose';
 
 import todoRouter from './routes/todo-routes';
+import userRouter from './routes/user-routes';
 
 const app: express.Application = express();
 app.use(urlencoded({ extended: true }));
@@ -27,6 +28,7 @@ app.use((req: Request, res: Response, next: NextFunction) => {
 });
 
 app.use('/api', todoRouter);
+app.use('/api', userRouter);
 
 mongoose
   .connect(

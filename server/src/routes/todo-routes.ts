@@ -13,7 +13,7 @@ const todoRouter: Router = Router();
     ** route
     @ /API/todos
 */
-todoRouter.get('/todos', getTodos);
+todoRouter.get('/todos/:userId', getTodos);
 
 /*
     ** route
@@ -21,7 +21,7 @@ todoRouter.get('/todos', getTodos);
     ** @req body
     todo - Todo Title e.g: Wash the dishes
 */
-todoRouter.post('/add-todo', addTodo);
+todoRouter.post('/add-todo/:userId', addTodo);
 
 /*
     ** route

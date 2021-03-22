@@ -3,11 +3,25 @@ import mongoose from 'mongoose';
 const Schema = mongoose.Schema;
 
 interface TodoDoc extends mongoose.Document {
-  todo: { type: String; required: true };
+  job: {
+    type: String;
+    required: true;
+  };
+  creator: {
+    type: String;
+    ref: 'User';
+  };
 }
 
 const todoSchema = new Schema({
-  todo: { type: String, required: true },
+  job: {
+    type: String,
+    required: true,
+  },
+  creator: {
+    type: String,
+    ref: 'User',
+  },
 });
 
 const TodoModel = mongoose.model<TodoDoc>('Todo', todoSchema);

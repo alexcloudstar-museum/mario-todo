@@ -8,13 +8,15 @@ export type AddTodoButtonsProps = Pick<ButtonProps, 'height'> & {
 };
 
 export interface getTodosType {
-  todos: [{ _id: string; todo: string }] | [];
+  todos: any;
+  userId: String;
 }
 
 export interface addTodoType {
-  todo: string;
+  userId: string;
+  job: string;
 }
 
-export type editTodoType = Pick<addTodoType, 'todo'> & { _id: string };
+export type editTodoType = Pick<addTodoType, 'job'> & { _id: string };
 
 export type deleteTodoType = Pick<editTodoType, '_id'>;

@@ -1,4 +1,5 @@
 import axios from 'axios';
+import getLocalStorageItem from '../../../../utils/localStorage/getLocalStorageItem';
 import {
   getTodosType,
   addTodoType,
@@ -8,10 +9,14 @@ import {
 
 const URL = `http://localhost:5000/api`;
 
-export const getTodos = axios.get<getTodosType>(`${URL}/todos`);
+export const createUser = data =>
+  axios.post<{ userId: string }>(`${URL}/create-user/`, data);
 
-export const addTodo = (data: addTodoType) =>
-  axios.post<addTodoType>(`${URL}/add-todo`, data);
+export const getTodos = () =>
+  axios.get<getTodosType>(`${URL}/todos/${getLocalStorageItem('id')}`);
+
+export const addTodo = ({ userId, job }: addTodoType) =>
+  axios.post<addTodoType>(`${URL}/add-todo/${userId}`, { job });
 
 export const editTodo = async ({ job, _id }) =>
   await axios.patch<editTodoType>(`${URL}/edit-todo/${_id}`, { job });

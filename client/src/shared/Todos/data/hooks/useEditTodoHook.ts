@@ -13,7 +13,7 @@ export const useEditTodoHook = todo => {
 
   const [upTodo, setUpTodo] = useState({
     _id: todo._id,
-    todo: todo.todo,
+    todo: todo.job,
   });
 
   const onChange = (e: React.FormEvent<HTMLInputElement>) => {
@@ -22,6 +22,7 @@ export const useEditTodoHook = todo => {
 
   const blurEvent = () => {
     setDisabled(true);
+    editTodo({ job: upTodo.todo, _id: upTodo._id });
   };
 
   const onBtnSubmit = async () => {
