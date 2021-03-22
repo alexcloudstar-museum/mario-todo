@@ -10,6 +10,7 @@ export const getTodos = async (
   next: NextFunction
 ) => {
   const errors = validationResult(req);
+  const { userId }: any = req.params;
 
   if (!errors.isEmpty()) {
     return next(new HttpError('Fetching todos failed', 500));
@@ -18,7 +19,7 @@ export const getTodos = async (
   let todos;
 
   try {
-    todos = await TodoModel.find({});
+    todos = await TodoModel.find({ creator: userId });
   } catch (err) {
     const errors = new HttpError('Fetching todos failed', 500);
 
