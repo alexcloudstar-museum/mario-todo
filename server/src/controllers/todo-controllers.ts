@@ -1,7 +1,6 @@
 import { Request, Response, NextFunction } from 'express';
 import { validationResult } from 'express-validator';
-
-import { TodoModel, UserModel } from '../models/';
+import { UserModel, TodoModel } from '../models';
 
 import HttpError from '../utils/http-error';
 
@@ -11,6 +10,7 @@ export const getTodos = async (
   next: NextFunction
 ) => {
   const errors = validationResult(req);
+  const { userId }: any = req.params;
 
   if (!errors.isEmpty()) {
     return next(new HttpError('Fetching todos failed', 500));
@@ -19,7 +19,7 @@ export const getTodos = async (
   let todos;
 
   try {
-    todos = await TodoModel.find({});
+    todos = await TodoModel.find({ creator: userId });
   } catch (err) {
     const errors = new HttpError('Fetching todos failed', 500);
 
@@ -35,16 +35,20 @@ export const addTodo = async (
   next: NextFunction
 ) => {
   const errors = validationResult(req);
+  const { job } = req.body;
+  const { userId }: any = req.params;
 
   if (!errors.isEmpty()) {
     return next(new HttpError('Invalid Todo, please check your data', 500));
   }
 
-  const userId: any = req.params.userId;
-  const { job } = req.body;
+  let existingTodo;
+  let user;
 
-  let user: any;
+  const newTodo = new TodoModel({ job, creator: userId });
+
   try {
+    existingTodo = await TodoModel.findOne({ job });
     user = await UserModel.findOne({ userId });
   } catch (err) {
     const error = new HttpError(
@@ -55,23 +59,22 @@ export const addTodo = async (
     return next(error);
   }
 
-  // TODO: get back to it. Check if todo is already existing
-  // if (usersTodos) {
-  //   const error = new HttpError(
-  //     'Todo already exist, please provide a new one',
-  //     400
-  //   );
+  if (existingTodo) {
+    const error = new HttpError(
+      'Todo already exist, please provide a new one',
+      400
+    );
 
-  //   return next(error);
-  // }
+    return next(error);
+  }
 
-  const newTodo = new TodoModel({ job });
-
-  user.todos.push(newTodo);
+  user?.todos.push(newTodo._id);
 
   try {
-    user && (await user.save());
+    await newTodo.save();
+    await user?.save();
   } catch (err) {
+    console.log(err);
     const error = new HttpError(
       "Todo couldn't be saved. Please try again",
       500
@@ -80,7 +83,7 @@ export const addTodo = async (
     return next(error);
   }
 
-  res.status(201).json({ message: 'Todo created', newTodo });
+  res.status(201).json({ message: 'Todo created', newTodo, user });
 };
 
 export const editTodo = async (
@@ -88,9 +91,8 @@ export const editTodo = async (
   res: Response,
   next: NextFunction
 ) => {
-  const todoId = req.params.todoId;
-  const userId: any = req.params.userId;
-  const { job } = req.body;
+  const { todoId }: any = req.params;
+  const { job }: any = req.body;
 
   const errors = validationResult(req);
 
@@ -100,10 +102,10 @@ export const editTodo = async (
     return next(error);
   }
 
-  let user: any;
+  let todo;
 
   try {
-    user = await UserModel.findOne({ userId });
+    todo = await TodoModel.findById(todoId);
   } catch (err) {
     const error = new HttpError(
       'Something went wrong, could not update the todo',
@@ -113,19 +115,16 @@ export const editTodo = async (
     return next(error);
   }
 
-  // TODO: Get back to it)
-  // if (!user) {
-  //   return next(
-  //     new HttpError('Could not find the Todo, please review your data', 404)
-  //   );
-  // }
+  if (!todo) {
+    return next(
+      new HttpError('Could not find the Todo, please review your data', 404)
+    );
+  }
+
+  todo.job = job;
 
   try {
-    await user.todos.map((todos: any) => {
-      if (todos.id === todoId) {
-        todos.job = job;
-      }
-    });
+    await todo.save();
   } catch (err) {
     const error = new HttpError(
       'Something went wrong, could not update the todo',
@@ -135,18 +134,7 @@ export const editTodo = async (
     return next(error);
   }
 
-  try {
-    await user.save();
-  } catch (err) {
-    const error = new HttpError(
-      'Something went wrong, could not update the todo',
-      500
-    );
-
-    return next(error);
-  }
-
-  res.status(201).json({ message: 'Todo updated!', user });
+  res.status(201).json({ message: 'Todo updated!', todo });
 };
 
 export const deleteTodo = async (
@@ -154,7 +142,7 @@ export const deleteTodo = async (
   res: Response,
   next: NextFunction
 ) => {
-  const todoId = req.params.todoId;
+  const { todoId }: any = req.params;
 
   const errors = validationResult(req);
 
@@ -163,9 +151,11 @@ export const deleteTodo = async (
   }
 
   let todo;
+  let user;
 
   try {
     todo = await TodoModel.findById(todoId);
+    user = await UserModel.findOne({ userId: todo?.creator });
   } catch (err) {
     return next(new HttpError('Something went wrong, please try again', 500));
   }
@@ -176,7 +166,13 @@ export const deleteTodo = async (
     );
   }
 
+  const userTodos = user?.todos;
+  const indexOfTodo = userTodos?.indexOf(todo._id);
+
+  indexOfTodo && indexOfTodo > -1 && userTodos?.splice(indexOfTodo, 1);
+
   try {
+    await user?.save();
     await todo.remove();
   } catch (err) {
     return next(new HttpError('Something went wrong, please try again', 500));
