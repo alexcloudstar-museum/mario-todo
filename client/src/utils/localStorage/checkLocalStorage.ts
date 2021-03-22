@@ -7,7 +7,7 @@ import { useEffect } from 'react';
 const checkLocalStorage = (storageName: string) => {
   const checkStorage = async (key: string) => {
     const storedData = getLocalStorage(key);
-    console.log(storedData);
+
     if (!storedData) {
       const userId = uuidv4();
       setLocalStorageItem('id', userId);

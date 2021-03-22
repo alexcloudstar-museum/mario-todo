@@ -16,8 +16,8 @@ export const getTodos = axios.get<getTodosType>(
   `${URL}/todos/${getLocalStorageItem}`
 );
 
-export const addTodo = (data: addTodoType) =>
-  axios.post<addTodoType>(`${URL}/add-todo`, data);
+export const addTodo = ({ userId, job }: addTodoType) =>
+  axios.post<addTodoType>(`${URL}/add-todo/${userId}`, { job });
 
 export const editTodo = async ({ job, _id }) =>
   await axios.patch<editTodoType>(`${URL}/edit-todo/${_id}`, { job });
