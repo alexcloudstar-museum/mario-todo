@@ -1,5 +1,5 @@
-const getLocalStorageItem = (key: string): void => {
-  localStorage.getItem(key);
+const getLocalStorageItem = (key: string): string => {
+  return localStorage.getItem(key);
 };
 
 export default getLocalStorageItem;
