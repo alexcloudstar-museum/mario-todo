@@ -18,7 +18,6 @@ export const useAddTodoHook = () => {
     const userId = getLocalStorageItem('id');
     const newTodo = await addTodo({ job: todo.todo, userId });
 
-    console.log(newTodo);
     setTodos(todos.concat({ _id: newTodo.data.newTodo._id, todo: todo.todo }));
 
     setTodo({ todo: '' });
