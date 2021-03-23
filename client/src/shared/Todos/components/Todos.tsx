@@ -4,6 +4,7 @@ import { useTodosContext } from '../data/context/TodosContext';
 import AddTodo from './AddTodo';
 import Todo from './Todo';
 
+import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import { map, isEmpty, sortBy } from 'lodash';
 
 const Todos = () => {
@@ -15,7 +16,11 @@ const Todos = () => {
     <TodosWrapper>
       <AddTodo />
       {!isEmpty(todos) ? (
-        map(sortedTodos, todo => <Todo key={todo._id} todo={todo} />)
+        map(sortedTodos, todo => (
+          <TransitionGroup transitionName='todos'>
+            <Todo key={todo._id} todo={todo} />
+          </TransitionGroup>
+        ))
       ) : (
         <NoTodoLeft>
           <h3>Congrats!</h3>

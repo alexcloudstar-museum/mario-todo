@@ -9,6 +9,24 @@ export const TodosWrapper = styled.div`
   border: 1px solid #707070;
   border-radius: 10px 10px 0px 0px;
   box-shadow: 9px 8px 13px #00000029;
+
+  .todos-enter {
+    opacity: 0.1;
+  }
+
+  .todos-enter.todos-enter-active {
+    opacity: 1;
+    transition: opacity 300ms ease-in;
+  }
+
+  .todos-leave {
+    opacity: 1;
+  }
+
+  .todos-leave.todos-leave-active {
+    opacity: 0.1;
+    transition: opacity 300ms ease-in;
+  }
 `;
 
 export const AddTodoWrapper = styled.div`
