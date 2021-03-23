@@ -2,10 +2,10 @@
 module.exports = {
   mount: {
     // directory name: 'build directory'
-      public: '/',
-      src: '/dist'
+    public: '/',
+    src: '/dist',
   },
-  plugins: ['@snowpack/plugin-react-refresh'],
+  plugins: ['@snowpack/plugin-react-refresh', '@snowpack/plugin-dotenv'],
   routes: [
     /* Enable an SPA Fallback in development: */
     // {"match": "routes", "src": ".*", "dest": "/index.html"},

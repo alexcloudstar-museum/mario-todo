@@ -7,7 +7,7 @@ import {
   deleteTodoType,
 } from '../../components/types';
 
-const URL = `http://localhost:5000/api`;
+const URL = import.meta.env.SNOWPACK_PUBLIC_API_URL;
 
 export const createUser = data =>
   axios.post<{ userId: string }>(`${URL}/create-user/`, data);

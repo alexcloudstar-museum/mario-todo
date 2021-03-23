@@ -12,11 +12,17 @@ export const StyledHeader = styled.header`
 `;
 
 export const StyledNavigationLinks = styled.ul`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+
   h2 {
     font-size: 24px;
   }
   @media (min-width: 991px) {
     margin: 0 3rem 0 0;
+
     h2 {
       font-size: 30px;
     }
