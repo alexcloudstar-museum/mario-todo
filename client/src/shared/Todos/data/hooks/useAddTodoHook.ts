@@ -14,9 +14,9 @@ export const useAddTodoHook = () => {
     });
   };
 
-  const onBtnSubmit = () => {
+  const onBtnSubmit = async () => {
     const userId = getLocalStorageItem('id');
-    addTodo({ job: todo.todo, userId });
+    await addTodo({ job: todo.todo, userId });
     setTodos(todos.concat({ _id: todo._id, todo: todo.todo }));
     setTempTodo({ _id: todo._id, todo: todo.todo });
     setTodo({ todo: '' });
