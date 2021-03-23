@@ -1,5 +1,5 @@
 import styled, { keyframes } from 'styled-components';
-import { fadeInLeft, fadeInDown } from 'react-animations';
+import { fadeInLeft, fadeInDown, fadeInUp } from 'react-animations';
 
 const fadeInLeftAnimation = keyframes`${fadeInLeft}`;
 const fadeInDownAnimation = keyframes`${fadeInDown}`;
@@ -30,12 +30,11 @@ export const StyledTodo = styled.div`
   align-items: center;
   text-transform: capitalize;
   border-bottom: 1px solid #707070;
+  animation: 1s ${fadeInLeftAnimation};
 
   p {
     width: 100%;
   }
-
-  animation: 1s ${fadeInLeftAnimation};
 `;
 
 export const NoTodoLeft = styled.div`
@@ -44,6 +43,8 @@ export const NoTodoLeft = styled.div`
   align-items: center;
   flex-direction: column;
   justify-content: center;
+  animation: 1s ${fadeInDownAnimation};
+
   h3 {
     font-size: 2rem;
     margin: 0;
