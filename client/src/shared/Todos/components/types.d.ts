@@ -15,6 +15,7 @@ export interface getTodosType {
 export interface addTodoType {
   userId: string;
   job: string;
+  newTodo?: { _id: string };
 }
 
 export type editTodoType = Pick<addTodoType, 'job'> & { _id: string };
