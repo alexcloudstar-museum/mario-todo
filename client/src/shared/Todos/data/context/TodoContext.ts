@@ -1,7 +1,7 @@
 import { createContext, useContext } from 'react';
 
 export type TodoContextType = {
-  todo: { _id: string; todo: string };
+  todo: { _id: string; todo: string; updatedAt?: string };
   tempTodo: { _id: string; todo: string };
   setTodo: ({ _id, todo }: { _id?: string; todo: string }) => void;
   setTempTodo: ({ _id, todo }: { _id?: string; todo: string }) => void;

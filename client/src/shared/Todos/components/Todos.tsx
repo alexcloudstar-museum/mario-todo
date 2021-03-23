@@ -4,16 +4,18 @@ import { useTodosContext } from '../data/context/TodosContext';
 import AddTodo from './AddTodo';
 import Todo from './Todo';
 
-import { map, isEmpty } from 'lodash';
+import { map, isEmpty, sortBy } from 'lodash';
 
 const Todos = () => {
   const { todos } = useTodosContext();
+
+  const sortedTodos = sortBy(todos, todo => new Date(todo.updatedAt));
 
   return (
     <TodosWrapper>
       <AddTodo />
       {!isEmpty(todos) ? (
-        map(todos, todo => <Todo key={todo._id} todo={todo} />)
+        map(sortedTodos, todo => <Todo key={todo._id} todo={todo} />)
       ) : (
         <NoTodoLeft>
           <h3>Congrats!</h3>
