@@ -12,8 +12,9 @@ on:
 
 jobs:
   build:
-    working-directory: ./server
     runs-on: ubuntu-latest
+    - name: Deploy to Heroku
+    working-directory: server
     steps:
       - uses: actions/checkout@v2
       - uses: akhileshns/heroku-deploy@v3.0.0
