@@ -5,7 +5,7 @@ const fadeInLeftAnimation = keyframes`${fadeInLeft}`;
 const fadeInDownAnimation = keyframes`${fadeInDown}`;
 
 export const TodosWrapper = styled.div`
-  width: 446px;
+  width: 90%;
   height: 416px;
   overflow: hidden;
   background: #fff;
@@ -15,6 +15,10 @@ export const TodosWrapper = styled.div`
   box-shadow: 9px 8px 13px #00000029;
 
   animation: 1s ${fadeInDownAnimation};
+
+  @media (min-width: 991px) {
+    width: 100%;
+  }
 `;
 
 export const AddTodoWrapper = styled.div`
