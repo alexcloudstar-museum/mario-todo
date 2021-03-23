@@ -5,7 +5,7 @@ import { useTodosContext } from '../context/TodosContext';
 import { addTodo } from '../service/todosService';
 
 export const useAddTodoHook = () => {
-  const { todo, tempTodo, setTodo, setTempTodo } = useTodoContext();
+  const { todo, setTodo } = useTodoContext();
   const { todos, setTodos } = useTodosContext();
 
   const onChange = (e: React.FormEvent<HTMLInputElement>) => {
@@ -14,11 +14,13 @@ export const useAddTodoHook = () => {
     });
   };
 
-  const onBtnSubmit = () => {
+  const onBtnSubmit = async () => {
     const userId = getLocalStorageItem('id');
-    addTodo({ job: todo.todo, userId });
-    setTodos(todos.concat({ _id: todo._id, todo: todo.todo }));
-    setTempTodo({ _id: todo._id, todo: todo.todo });
+    const newTodo = await addTodo({ job: todo.todo, userId });
+
+    console.log(newTodo);
+    setTodos(todos.concat({ _id: newTodo.data.newTodo._id, todo: todo.todo }));
+
     setTodo({ todo: '' });
   };
 

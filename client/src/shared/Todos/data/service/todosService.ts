@@ -7,7 +7,7 @@ import {
   deleteTodoType,
 } from '../../components/types';
 
-const URL = `http://localhost:5000/api`;
+const URL = import.meta.env.SNOWPACK_PUBLIC_API_URL;
 
 export const createUser = data =>
   axios.post<{ userId: string }>(`${URL}/create-user/`, data);
@@ -15,8 +15,8 @@ export const createUser = data =>
 export const getTodos = () =>
   axios.get<getTodosType>(`${URL}/todos/${getLocalStorageItem('id')}`);
 
-export const addTodo = ({ userId, job }: addTodoType) =>
-  axios.post<addTodoType>(`${URL}/add-todo/${userId}`, { job });
+export const addTodo = async ({ userId, job }: addTodoType) =>
+  await axios.post<addTodoType>(`${URL}/add-todo/${userId}`, { job });
 
 export const editTodo = async ({ job, _id }) =>
   await axios.patch<editTodoType>(`${URL}/edit-todo/${_id}`, { job });

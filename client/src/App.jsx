@@ -3,6 +3,7 @@ import {Container, MainNavigation, NavigationLinks, NavigationLink, Logo} from '
 import { Homepage } from './pages';
 import { TodoContext } from './shared/Todos/data/context/TodoContext';
 import { ButtonContext } from './shared/FormElements/data/context/ButtonContext';
+import LogoImg from './assets/img/logo.png'
 
 
 import {checkLocalStorage} from './utils/localStorage'
@@ -17,7 +18,8 @@ const  App = () => {
   return <>
     <MainNavigation>
     <NavigationLinks>
-        <Logo>Logo</Logo>
+        <Logo src={LogoImg} />
+        <h2>Todo</h2>
     </NavigationLinks>
       <NavigationLinks>
         <NavigationLink>About</NavigationLink>
