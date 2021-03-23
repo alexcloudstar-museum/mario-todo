@@ -19,6 +19,24 @@ export const StyledInput = styled.input<{ disabled: boolean; height?: string }>`
   &:focus {
     outline: none;
   }
+
+  .todos-enter {
+    opacity: 0.1;
+  }
+
+  .todos-enter.todos-enter-active {
+    opacity: 1;
+    transition: opacity 300ms ease-in;
+  }
+
+  .todos-leave {
+    opacity: 1;
+  }
+
+  .todos-leave.todos-leave-active {
+    opacity: 0.1;
+    transition: opacity 300ms ease-in;
+  }
 `;
 
 export const StyledButton = styled.button<{

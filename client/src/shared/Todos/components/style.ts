@@ -1,4 +1,8 @@
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
+import { fadeInLeft, fadeInDown } from 'react-animations';
+
+const fadeInLeftAnimation = keyframes`${fadeInLeft}`;
+const fadeInDownAnimation = keyframes`${fadeInDown}`;
 
 export const TodosWrapper = styled.div`
   width: 446px;
@@ -10,23 +14,7 @@ export const TodosWrapper = styled.div`
   border-radius: 10px 10px 0px 0px;
   box-shadow: 9px 8px 13px #00000029;
 
-  .todos-enter {
-    opacity: 0.1;
-  }
-
-  .todos-enter.todos-enter-active {
-    opacity: 1;
-    transition: opacity 300ms ease-in;
-  }
-
-  .todos-leave {
-    opacity: 1;
-  }
-
-  .todos-leave.todos-leave-active {
-    opacity: 0.1;
-    transition: opacity 300ms ease-in;
-  }
+  animation: 1s ${fadeInDownAnimation};
 `;
 
 export const AddTodoWrapper = styled.div`
@@ -46,6 +34,8 @@ export const StyledTodo = styled.div`
   p {
     width: 100%;
   }
+
+  animation: 1s ${fadeInLeftAnimation};
 `;
 
 export const NoTodoLeft = styled.div`
