@@ -18,6 +18,7 @@ export const StyledNavigationLinks = styled.ul`
   margin: 0;
 
   h2 {
+    margin: 0;
     font-size: 24px;
   }
   @media (min-width: 991px) {
@@ -38,7 +39,7 @@ export const StyledNavigationLink = styled.li`
   font-weight: 700;
 
   @media (min-width: 991px) {
-    margin: 2.3rem;
+    margin: 0 2.3rem;
     padding: 0.5rem;
     font-size: 24px;
   }
