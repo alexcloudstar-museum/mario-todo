@@ -3,14 +3,8 @@ import styled from 'styled-components';
 
 const LogoWrapper = styled.div`
   img {
-    width: 50px;
+    width: 40px;
     margin: 7px 15px;
-  }
-
-  @media (min-width: 991px) {
-    img {
-      margin: 15px;
-    }
   }
 `;
 

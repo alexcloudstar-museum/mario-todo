@@ -1,5 +1,5 @@
 import React from 'react';
-import { NavigationProps } from './type';
+import { NavigationProps } from '../types/type';
 import { StyledNavigationLinks } from './style';
 
 const NavigationLinks: React.FC<NavigationProps> = ({ children }) => (

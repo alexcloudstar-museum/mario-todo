@@ -20,6 +20,18 @@ body,
   height: 100%;
 }
 
+li {
+  list-style-type: none;
+}
+
+a {
+  text-decoration: none;
+
+  &.active {
+    color: #FED028;
+  }
+}
+
 ::-webkit-scrollbar-track
 {
   box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
@@ -41,6 +53,8 @@ body,
 	                  color-stop(.5, rgba(255, 255, 255, .2)),
 					          color-stop(.5, transparent), to(transparent));
 }
+
+
 
 `;
 

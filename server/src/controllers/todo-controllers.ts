@@ -59,7 +59,7 @@ export const addTodo = async (
     return next(error);
   }
 
-  if (existingTodo) {
+  if (existingTodo && existingTodo.creator === user?.userId) {
     const error = new HttpError(
       'Todo already exist, please provide a new one',
       400

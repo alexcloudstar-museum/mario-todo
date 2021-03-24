@@ -1,9 +1,13 @@
 import React from 'react';
-import { NavigationProps } from './type';
+import { NavigationProps } from '../types/type';
 import { StyledNavigationLink } from './style';
 
-const NavigationLink: React.FC<NavigationProps> = ({ children }) => (
-  <StyledNavigationLink>{children}</StyledNavigationLink>
+import { NavLink } from 'react-router-dom';
+
+const NavigationLink: React.FC<NavigationProps> = ({ children, to }) => (
+  <StyledNavigationLink>
+    <NavLink to={to}>{children}</NavLink>
+  </StyledNavigationLink>
 );
 
 export default NavigationLink;

@@ -4,6 +4,7 @@ import { HomepageWrapper } from './style';
 import { Todos } from '../../shared';
 import { TodosContext } from '../../shared/Todos/data/context/TodosContext';
 import { getTodos } from '../../shared/Todos/data/service/todosService';
+import { CenterContent } from '../../utils';
 
 const Homepage = () => {
   const [todos, setTodos] = useState<[]>([]);
@@ -17,9 +18,7 @@ const Homepage = () => {
 
   return (
     <TodosContext.Provider value={{ todos, setTodos }}>
-      <HomepageWrapper>
-        <Todos />
-      </HomepageWrapper>
+      <Todos />
     </TodosContext.Provider>
   );
 };
