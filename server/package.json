@@ -8,7 +8,8 @@
     "server": "nodemon src/index.ts --inspect",
     "client": "npm start --prefix ../client/",
     "dev": "concurrently \"npm run server\"  \"npm run client\"",
-    "build": "tsc --project ./"
+    "build": "tsc --project ./",
+    "deploy": "git push heroku master"
   },
   "keywords": [],
   "author": "",
