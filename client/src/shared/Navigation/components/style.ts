@@ -17,9 +17,14 @@ export const StyledNavigationLinks = styled.ul`
   align-items: center;
   margin: 0;
 
-  h2 {
-    margin: 0;
-    font-size: 24px;
+  a {
+    color: #4ebcfd;
+
+    h2 {
+      margin: 0;
+      font-size: 24px;
+      text-transform: uppercase;
+    }
   }
   @media (min-width: 991px) {
     margin: 0 3rem 0 0;
@@ -31,16 +36,22 @@ export const StyledNavigationLinks = styled.ul`
 `;
 
 export const StyledNavigationLink = styled.li`
-  color: #707070;
-  display: inline;
-  margin: 1rem;
-  padding: 0.5rem;
-  font-size: 20px;
-  font-weight: 700;
+  list-style-type: none;
+
+  a {
+    color: #707070;
+    display: inline;
+    margin: 1rem;
+    padding: 0.5rem;
+    font-size: 20px;
+    font-weight: 700;
+  }
 
   @media (min-width: 991px) {
-    margin: 0 2.3rem;
-    padding: 0.5rem;
-    font-size: 24px;
+    a {
+      margin: 0 2.3rem;
+      padding: 0.5rem;
+      font-size: 24px;
+    }
   }
 `;

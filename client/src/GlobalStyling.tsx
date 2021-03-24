@@ -20,6 +20,10 @@ body,
   height: 100%;
 }
 
+a {
+  text-decoration: none;
+}
+
 ::-webkit-scrollbar-track
 {
   box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
@@ -41,6 +45,8 @@ body,
 	                  color-stop(.5, rgba(255, 255, 255, .2)),
 					          color-stop(.5, transparent), to(transparent));
 }
+
+
 
 `;
 

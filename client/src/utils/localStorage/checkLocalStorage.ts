@@ -1,4 +1,4 @@
-import { getLocalStorage, setLocalStorageItem } from './';
+import { getLocalStorage, setLocalStorageItem } from '../index';
 import { createUser } from '../../shared/Todos/data/service/todosService';
 
 import { v4 as uuidv4 } from 'uuid';
