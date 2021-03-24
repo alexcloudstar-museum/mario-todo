@@ -20,6 +20,10 @@ body,
   height: 100%;
 }
 
+li {
+  list-style-type: none;
+}
+
 a {
   text-decoration: none;
 

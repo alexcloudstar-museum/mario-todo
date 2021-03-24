@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import {Container, MainNavigation, NavigationLinks, NavigationLink, Logo} from './shared'
-import { Homepage, About } from './pages';
+import { Homepage, About, Contact } from './pages';
 import { TodoContext } from './shared/Todos/data/context/TodoContext';
 import { ButtonContext } from './shared/FormElements/data/context/ButtonContext';
 import LogoImg from './assets/img/logo.png'
@@ -30,6 +30,9 @@ const  App = () => {
         </Route>
         <Route path='/about'>
           <About />
+        </Route>
+        <Route path='/contact'>
+          <Contact />
         </Route>
         <Redirect to='/' />
       </Switch>

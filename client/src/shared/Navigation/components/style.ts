@@ -27,6 +27,7 @@ export const StyledNavigationLinks = styled.ul`
       margin: 0;
       font-size: 24px;
       text-transform: uppercase;
+      font-family: 'Train One', cursive;
     }
   }
   @media (min-width: 991px) {

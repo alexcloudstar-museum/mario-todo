@@ -1,13 +1,15 @@
 import styled from 'styled-components';
 
-export const AboutWrapper = styled.div`
+export const ContactWrapper = styled.div`
   background: #4098cc;
   padding: 40px;
   color: #fff;
+  text-align: center;
 
   li {
     color: #fff;
     padding: 5px;
+    text-align: left;
 
     span {
       a {
