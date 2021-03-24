@@ -19,6 +19,9 @@ export const StyledNavigationLinks = styled.ul`
 
   a {
     color: #4ebcfd;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
     h2 {
       margin: 0;

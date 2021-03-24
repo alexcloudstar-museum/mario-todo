@@ -13,7 +13,7 @@ import {
   Route,
   Redirect,
   Switch,
-  Link,
+  NavLink,
 } from 'react-router-dom';
 
 const  App = () => {
@@ -28,7 +28,7 @@ const  App = () => {
         <Route path='/' exact>
           <Homepage />
         </Route>
-        <Route path='/about' exact>
+        <Route path='/about'>
           <About />
         </Route>
         <Redirect to='/' />
@@ -39,10 +39,10 @@ const  App = () => {
   <Router>
     <MainNavigation>
     <NavigationLinks>
+    <NavLink to="/">
         <Logo src={LogoImg} />
-        <Link to="/">
           <h2>Todo</h2>
-        </Link>
+        </NavLink>
     </NavigationLinks>
       <NavigationLinks>
         <NavigationLink to={'/about'}>About</NavigationLink>

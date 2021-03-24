@@ -22,6 +22,10 @@ body,
 
 a {
   text-decoration: none;
+
+  &.active {
+    color: #FED028;
+  }
 }
 
 ::-webkit-scrollbar-track
