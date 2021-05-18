@@ -11,28 +11,6 @@ export const createUser = async (
 
   const newUser = new UserModel({ userId });
 
-  let user;
-
-  try {
-    user = await UserModel.findOne({ userId });
-  } catch (err) {
-    const error = new HttpError(
-      'Adding User failed, please try again later',
-      500
-    );
-
-    return next(error);
-  }
-
-  if (user) {
-    const error = new HttpError(
-      'User already exist, please try again later',
-      500
-    );
-
-    return next(error);
-  }
-
   try {
     await newUser.save();
   } catch (err) {
